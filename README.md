@@ -1,2 +1,2 @@
 # solaris
-Tasks for 
+Tasks for interview tech test
