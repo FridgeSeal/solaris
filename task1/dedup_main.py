@@ -6,6 +6,7 @@ import math as maths
 
 
 def handle_args(arg_list):
+    # TODO: proper argument handling, defaults and fallbacks
     return sys.argv[1]
 
 
@@ -66,6 +67,7 @@ def split_frames(data):
 def main():  # TODO: turn this into some nice, functional style functions.
     filename = handle_args(sys.argv)
     df = read_file(filename)
+    # TODO: calls to initiate connection with SQLite DB, fallbacks and warnings if it doesn't exist
     for fname in df['FirstName'].unique():
         temp = df[df['FirstName'] == fname]
         for lname in temp['LastName'].unique():
