@@ -11,8 +11,8 @@ CREATE TABLE personnel_chrono (
     DateOfBirth TEXT,
     PlaceOfBirth TEXT,
     Address TEXT,
-    Position TEXT NOT NULL,
-    ACN INTEGER NOT NULL,
+    Position TEXT,
+    ACN TEXT,
     UUID TEXT,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
     );
@@ -24,6 +24,6 @@ CREATE TABLE personnel_data (
     DateOfBirth TEXT,
     PlaceOfBirth TEXT,
     Address TEXT,
-    Position TEXT NOT NULL,
-    ACN INTEGER NOT NULL,
+    Position TEXT,
+    ACN TEXT,
     UUID TEXT);

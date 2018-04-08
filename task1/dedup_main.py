@@ -52,7 +52,7 @@ def check_homogenous(data):
 
 def extract_present(data):
     restricted_cols = ['UserID', 'Position', 'ACN']
-    cols = [x for x in data.columns if x not in restricted_cols]
+    cols = [x for x in data.columns]
     return {x: data[x].unique() for x in cols}
 
 
@@ -125,9 +125,9 @@ def collapse_records(data):
 
 
 def clean_tables(db_conn, company_df):
-    qry_cust = """SELECT T1.FirstName, T1.LastName, T1.MiddleName, T1.DateOfBirth, T1.PlaceOfBirth, T1.Address,
-     T1.UUID 
-     INTO personnel_data
+    qry_cust = """INSERT INTO personnel_data
+    SELECT T1.FirstName, T1.LastName, T1.MiddleName, T1.DateOfBirth, T1.PlaceOfBirth, T1.Address, T1.Position,
+     T1.ACN, T1.UUID 
      FROM personnel_chrono AS T1 
      WHERE
         T1.timestamp = (SELECT MAX(T2.timestamp) FROM personnel_chrono AS T2 WHERE T2.UUID = T1.UUID)"""
