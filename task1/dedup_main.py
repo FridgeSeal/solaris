@@ -136,7 +136,7 @@ def clean_tables(db_conn, company_df):
     company_temp = pandas.read_sql(company_qry, con=db_conn)
     company_temp = company_temp.append(company_df)
     company_temp = company_temp.drop_duplicates()
-    company_temp.to_sql('company_data', con=db_conn, index=False)
+    company_temp.to_sql('company_data', con=db_conn, index=False, if_exists='replace')
     cursor = db_conn.cursor()
     cursor.execute(rem_tbl)
     cursor.execute(qry_cust)
@@ -161,7 +161,7 @@ def main():
             all_company.extend([x[1] for x in deduplicated])
     personnel_df = pandas.DataFrame.from_dict(all_personel)
     company_df = pandas.concat(all_company)
-    personnel_df.to_sql('personel_chrono', con=connection, if_exists='append', index=False)
+    personnel_df.to_sql('personnel_chrono', con=connection, if_exists='append', index=False)
     clean_tables(connection, company_df)
 
 
